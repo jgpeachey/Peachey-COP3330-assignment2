@@ -70,4 +70,17 @@ class AnagramDetectorTest {
         //then
         assertEquals(expected, actual);
     }
+
+    @Test
+    void remove_double_letters() {
+        //given
+        AnagramDetector ad = new AnagramDetector();
+
+        //when
+        String expected = "per";
+        String actual = ad.removeDuplicates("pepper");
+
+        //then
+        assertEquals(expected, actual);
+    }
 }
