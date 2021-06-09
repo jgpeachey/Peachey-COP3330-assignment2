@@ -16,7 +16,7 @@ public class AnagramDetector {
                 }
             }
         }
-        if (isSame == length){
+        if (length != 0 && isSame == length){
             return true;
         }
         else{
