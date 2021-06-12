@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+Initialization --> While
+object Initialization{
+    total = 0
+    count = 0
+}
+object Statement{
+    print "Enter a number: "
+    total += input
+    ++count
+}
+While --> Output
+object Condition{
+    count < 5
+}
+object Output{
+    print "the total is " + total
+}
+map While {
+ Condition *--> Condition
+ Statement *--> Statement
+}
+
+
+@enduml
