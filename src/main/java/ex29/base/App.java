@@ -6,98 +6,76 @@
 package ex29.base;
 
 /*
-Write a program that prompts for a first name, last name, employee ID, and
-ZIP code. Ensure that the input is valid according to these rules:
+Write a quick calculator that prompts for the rate of return on an
+investment and calculates how many years it will take to double your
+investment.
 
-The first name must be filled in.
-The last name must be filled in.
-The first and last names must be at least two characters long.
-An employee ID is in the format AA-1234. So, two letters, a hyphen, and four numbers.
-The ZIP code must be a number.
-Display appropriate error messages on incorrect data.
+The formula is
+years = 72 / r
+where r is the stated rate of return.
 
 Example Output:
-Enter the first name: J
-Enter the last name:
-Enter the ZIP code: ABCDE
-Enter the employee ID: A12-1234
-The first name must be at least 2 characters long.
-The last name must be at least 2 characters long.
-The last name must be filled in.
-The employee ID must be in the format of AA-1234.
-The zipcode must be a 5 digit number.
-        Or
-Enter the first name: John
-Enter the last name: Johnson
-Enter the ZIP code: 55555
-Enter the employee ID: TK-4321
-There were no errors found.
+What is the rate of return? 0
+Sorry. That's not a valid input.
+What is the rate of return? ABC
+Sorry. That's not a valid input.
+What is the rate of return? 4
+It will take 18 years to double your initial investment.
 
 Constraints:
-*Create a function for each type of validation you need to write. Then create
-a validateInput function that takes in all of the input data and invokes the
-specific validation functions.
-*Use a single output statement to display the outputs.
+Don’t allow the user to enter 0.
+Don’t allow non-numeric values.
+Use a loop to trap bad input, so you can ensure that the user enters valid values.
 
-Challenges:
-*Use regular expressions to validate the input.
-*Implement this as a GUI application or web application that gives immediate
-feedback when the fields lose focus.
-*Repeat the process if the input is not valid.
+Challenge
+Display a different error message when the user enters 0.
  */
 
-import ex25.base.PasswordTester;
-import ex26.base.PaymentCalculator;
-import ex27.base.InputValidation;
-
-import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class App {
     private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-        InputValidation validator = new InputValidation();
+        Calculator calc = new Calculator();
 
-        String input[] = new String[4]; //B.A.M. = Balance, APR, Payment
+        double input; //B.A.M. = Balance, APR, Payment
         input = inputCreator();
 
-        outputCreator(validator.validateInput(input));
+        outputCreator(calc.yearsToDouble(input));
     }
 
-    public static String[] inputCreator(){
-        String input[] = new String[4];
-        System.out.println("Enter the first name: ");
-        input[0] = in.nextLine();
-        System.out.println("Enter the last name: ");
-        input[1] = in.nextLine();
-        System.out.println("Enter the ZIP code: ");
-        input[2] = in.nextLine();
-        System.out.println("Enter the employee ID: ");
-        input[3] = in.nextLine();
+    public static double inputCreator(){
+        System.out.println("What is the rate of return?");
+        double input = isNumber();
         return input;
     }
-    public static void outputCreator(int[] valid){
-        if(valid[0] == 2){
-            System.out.println("The first name must be at least 2 characters long.");
+    public static void outputCreator(double num){
+        System.out.println("It will take "+num+" years to double your initial investment.");
+    }
+
+    static double isNumber(){
+        int i = 1;
+        double input = 0;
+        boolean honest = in.hasNextDouble();
+        while(i == 1){
+            if(honest){
+                input = in.nextDouble();
+                if(input != 0){
+                    i = 0;
+                }
+                else{
+                    System.out.println("Sorry. That's not a valid input.");
+                    in.nextLine();
+                    honest = in.hasNextDouble();
+                }
+            }
+            else{
+                System.out.println("Sorry. That's not a valid input.");
+                in.nextLine();
+                honest = in.hasNextDouble();
+            }
         }
-        else if (valid[0] == 3){
-            System.out.println("The first name must be at least 2 characters long. \nThe first name must be filled in.");
-        }
-        if(valid[1] == 2){
-            System.out.println("The last name must be at least 2 characters long.");
-        }
-        else if (valid[1] == 3){
-            System.out.println("The last name must be at least 2 characters long. \nThe last name must be filled in.");
-        }
-        if(valid[2] == 2){
-            System.out.println("The zipcode must be a 5 digit number.");
-        }
-        if(valid[3] == 2){
-            System.out.println("The employee ID must be in the format of AA-1234.");
-        }
-        if(valid[4] == 1){
-            System.out.println("There were no errors found.");
-        }
+        return input;
     }
 }
