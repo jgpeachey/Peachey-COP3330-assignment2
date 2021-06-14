@@ -11,7 +11,7 @@ class employeeManifestTest {
     @Test
     void employeeRemover_case1() {
         //given
-        employeeManifest list = new employeeManifest();
+        EmployeeManifest list = new EmployeeManifest();
 
         ArrayList<String> employees = new ArrayList<String>() {
             {
@@ -36,7 +36,7 @@ class employeeManifestTest {
     @Test
     void employeeRemover_case2() {
         //given
-        employeeManifest list = new employeeManifest();
+        EmployeeManifest list = new EmployeeManifest();
 
         ArrayList<String> employees = new ArrayList<String>() {
             {

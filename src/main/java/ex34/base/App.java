@@ -6,23 +6,30 @@
 package ex34.base;
 
 /*
-Create a Magic 8 Ball game that prompts for a question and then displays either "Yes," "No," "Maybe," or "Ask again later."
+Create a small program that contains a list of employee names. Print out the list of names when the program runs the first time. Prompt for an employee name and remove that specific name from the list of names. Display the remaining employees, each on its own line.
 
 Example Output
-What's your question?
-> Will I be rich and famous?
+There are 5 employees:
+John Smith
+Jackie Jackson
+Chris Jones
+Amanda Cullen
+Jeremy Goodwin
 
-Ask again later.
+Enter an employee name to remove: Chris Jones
+
+There are 4 employees:
+John Smith
+Jackie Jackson
+Amanda Cullen
+Jeremy Goodwin
 Constraint
-The value should be chosen randomly using a pseudo random number generator. Store the possible choices in a list and select one at random.
+Use an array or list to store the names.
 Challenges
-Implement this as a GUI application.
-If available, use native device libraries to allow you to “shake” the 8 ball.
+If the user enters a name that’s not found, print out an error message stating that the name does not exist.
+Read in the list of employees from a file, with each employee on its own line.
+Write the output to the same file you read in.
  */
-
-import ex31.base.Calculator;
-import ex32.base.NumberGame;
-import ex33.base.eightBall;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,7 +38,7 @@ public class App { // how do i test random, like bro
     private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-        employeeManifest list = new employeeManifest();
+        EmployeeManifest list = new EmployeeManifest();
 
         outputCreator(list.employees());
         String input = inputCreator();
