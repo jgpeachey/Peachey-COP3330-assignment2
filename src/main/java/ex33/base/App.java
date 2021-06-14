@@ -20,16 +20,13 @@ Implement this as a GUI application.
 If available, use native device libraries to allow you to “shake” the 8 ball.
  */
 
-import ex31.base.Calculator;
-import ex32.base.NumberGame;
-
 import java.util.Scanner;
 
 public class App { // how do i test random, like bro
     private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-        eightBall orb = new eightBall();
+        EightBall orb = new EightBall();
 
         inputCreator();
         outputCreator(orb.randAns());

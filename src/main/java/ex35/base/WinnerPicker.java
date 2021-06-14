@@ -11,8 +11,12 @@ public class WinnerPicker {
 
     public Object theChosen(ArrayList names) {
         double size = names.size();
-        double chosen = Math.random()*size;
+        double chosen = randNum(size);
         return names.get((int) chosen);
     }
 
+    public double randNum(double size){
+        double num = Math.random()*size;
+        return (int) num;
+    }
 }

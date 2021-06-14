@@ -6,11 +6,16 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class eightBall {
+public class EightBall {
 
     public String randAns() {
         String ans[] = new String[]{"Yes", "No", "Maybe", "Ask again later"};
-        double num = Math.random()*4.0-1.0;
+        double num = randNum();
         return ans[(int) num];
+    }
+
+    public double randNum(){
+        double num = Math.random()*4.0-1.0;
+        return num;
     }
 }
